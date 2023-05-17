@@ -1,11 +1,19 @@
 import Button from './components/base/Button';
+import { GoBell } from 'react-icons/go';
 import { ReactElement } from 'react';
 import './App.css';
 
 function App(): ReactElement {
+  const handleClick = (): void => {
+    console.log('hi');
+  };
+
   return (
     <div>
-      <Button primary>Button</Button>
+      <Button primary onClick={handleClick} className='mb-5' disabled>
+        <GoBell />
+        Button
+      </Button>
       <Button secondary>Buy now</Button>
       <Button success>See Deal</Button>
       <Button warning>Hide Ads</Button>
