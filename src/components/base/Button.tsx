@@ -1,3 +1,4 @@
+import { twMerge } from 'tailwind-merge';
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
@@ -41,7 +42,7 @@ const Button: React.FC<ButtonProps> = ({
     throw new Error('Only one of outline or rounded prop should be provided');
   }
 
-  const classes = classNames('px-3 py-1.5 border', {
+  let classes = classNames('px-3 py-1.5 border', {
     'border-blue-500 bg-blue-500 text-white': primary,
     'border-gray-900 bg-gray-900 text-white': secondary,
     'border-green-500 bg-green-500 text-white': success,
@@ -55,6 +56,8 @@ const Button: React.FC<ButtonProps> = ({
     'text-yellow-400': outline && warning,
     'text-red-500': outline && danger,
   });
+
+  classes = twMerge(classes);
 
   return <button className={classes}>{children}</button>;
 };
