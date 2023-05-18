@@ -1,40 +1,42 @@
-import Button from './components/base/Button';
-import { GoBell } from 'react-icons/go';
+import Accordion from './components/base/Accordion';
 import { ReactElement } from 'react';
 import './App.css';
 
 function App(): ReactElement {
-  const handleClick = (): void => {
-    console.log('hi');
-  };
+  const items = [
+    {
+      id: Math.random(),
+      label:
+        '[LABEL 1] : Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem illum, mollitia numquam debitis iusto repellat ea quae dicta. Natus labore aut mollitia at tempore veritatis blanditiis, beatae exercitationem similique rem?',
+      content:
+        '[CONTENT 1] : Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa quisquam dolore, delectus quo sed rerum soluta quaerat cupiditate, qui tempora sequi quia corporis ratione porro adipisci, natus vel vero!',
+    },
+    {
+      id: Math.random(),
+      label:
+        '[LABEL 2] : Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem illum, mollitia numquam debitis iusto repellat ea quae dicta. Natus labore aut mollitia at tempore veritatis blanditiis, beatae exercitationem similique rem?',
+      content:
+        '[CONTENT 2] : Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa quisquam dolore, delectus quo sed rerum soluta quaerat cupiditate, qui tempora sequi quia corporis ratione porro adipisci, natus vel vero!',
+    },
+    {
+      id: Math.random(),
+      label:
+        '[LABEL 3] : Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem illum, mollitia numquam debitis iusto repellat ea quae dicta. Natus labore aut mollitia at tempore veritatis blanditiis, beatae exercitationem similique rem?',
+      content:
+        '[CONTENT 3] : Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa quisquam dolore, delectus quo sed rerum soluta quaerat cupiditate, qui tempora sequi quia corporis ratione porro adipisci, natus vel vero!',
+    },
+    {
+      id: Math.random(),
+      label:
+        '[LABEL 4] : Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem illum, mollitia numquam debitis iusto repellat ea quae dicta. Natus labore aut mollitia at tempore veritatis blanditiis, beatae exercitationem similique rem?',
+      content:
+        '[CONTENT 4] : Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa quisquam dolore, delectus quo sed rerum soluta quaerat cupiditate, qui tempora sequi quia corporis ratione porro adipisci, natus vel vero!',
+    },
+  ];
 
   return (
     <div>
-      <Button primary onClick={handleClick} className='mb-5' disabled>
-        <GoBell />
-        Button
-      </Button>
-      <Button secondary>Buy now</Button>
-      <Button success>See Deal</Button>
-      <Button warning>Hide Ads</Button>
-      <Button danger>Something</Button>
-      <Button rounded>Rounded</Button>
-      <Button outline>Outline</Button>
-      <Button outline primary>
-        outline primary
-      </Button>
-      <Button outline secondary>
-        outline secondary
-      </Button>
-      <Button outline success>
-        outline success
-      </Button>
-      <Button outline warning>
-        outline warning
-      </Button>
-      <Button outline danger>
-        outline danger
-      </Button>
+      <Accordion items={items} />
     </div>
   );
 }
