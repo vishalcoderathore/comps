@@ -3,17 +3,32 @@ import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 
 interface LinkProps {
-  to: string;
+  activeClassName: string;
   children: ReactNode;
+  className?: string;
+  to: string;
 }
 
-const Link: React.FC<LinkProps> = ({ to, children }) => {
-  const classes = classNames('text-blue-500');
+const Link: React.FC<LinkProps> = ({
+  activeClassName,
+  children,
+  className,
+  to,
+}) => {
   const context = useNavigationContext();
   const noop = (): void => {
     console.log('[EMPTY CONTEXT]');
   };
   const navigate = context?.navigate || noop; // Default function that does nothing
+  const currentPath = context?.currentPath || '';
+
+  // Custom Styling
+  const classes = classNames(
+    'text-blue-500',
+    className,
+    currentPath === to && activeClassName,
+  );
+
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>): void => {
     // Support pressing Ctrl key and clicking navigation items to open up in a new tab
     if (event.metaKey || event.ctrlKey) {
