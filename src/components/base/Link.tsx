@@ -1,7 +1,6 @@
-import NavigationContext, {
-  NavigationContextType,
-} from '../../context/navigation';
-import React, { ReactNode, useContext } from 'react';
+import useNavigationContext from '../../hooks/use-navigation-context';
+import React, { ReactNode } from 'react';
+import classNames from 'classnames';
 
 interface LinkProps {
   to: string;
@@ -9,9 +8,8 @@ interface LinkProps {
 }
 
 const Link: React.FC<LinkProps> = ({ to, children }) => {
-  const context = useContext<NavigationContextType | undefined>(
-    NavigationContext,
-  );
+  const classes = classNames('text-blue-500');
+  const context = useNavigationContext();
   const noop = (): void => {
     console.log('[EMPTY CONTEXT]');
   };
@@ -25,7 +23,7 @@ const Link: React.FC<LinkProps> = ({ to, children }) => {
     navigate(to);
   };
   return (
-    <a href={to} onClick={handleClick}>
+    <a className={classes} href={to} onClick={handleClick}>
       {children}
     </a>
   );
