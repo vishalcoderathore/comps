@@ -3,6 +3,7 @@ import Sidebar from './components/base/Sidebar';
 import DropdownPage from './pages/DropdownPage';
 import Route from './components/base/Route';
 import ButtonPage from './pages/ButtonPage';
+import ModalPage from './pages/ModalPage';
 import { ReactElement } from 'react';
 import './App.css';
 
@@ -19,6 +20,10 @@ function App(): ReactElement {
     {
       label: 'Dropdown',
       path: '/dropdown',
+    },
+    {
+      label: 'Modal',
+      path: '/modal',
     },
   ];
 
@@ -37,6 +42,9 @@ function App(): ReactElement {
         </Route>
         <Route path='/button'>
           <ButtonPage />
+        </Route>
+        <Route path='/modal'>
+          <ModalPage />
         </Route>
       </div>
     </div>
