@@ -1,6 +1,4 @@
-import NavigationContext, {
-  NavigationContextType,
-} from '../context/navigation';
+import NavigationContext, { NavigationContextType } from '../context/navigation';
 import { useContext } from 'react';
 
 function useNavigationContext(): NavigationContextType | undefined {

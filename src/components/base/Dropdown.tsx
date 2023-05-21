@@ -14,12 +14,7 @@ interface DropdownProps {
   selectLabel?: string;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({
-  options,
-  value,
-  onChange,
-  selectLabel = 'Select...',
-}) => {
+const Dropdown: React.FC<DropdownProps> = ({ options, value, onChange, selectLabel = 'Select...' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const divEl = useRef<HTMLDivElement | null>(null);
   const handleClick = (): void => {
@@ -47,7 +42,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   const renderedOptions = options.map(option => (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
     <div
-      className='hover:bg-sky-100 rounded cursor-pointer p-1'
+      className="hover:bg-sky-100 rounded cursor-pointer p-1"
       onClick={(): void => handleOptionClick(option)}
       key={option.value}>
       {option.label}
@@ -55,15 +50,13 @@ const Dropdown: React.FC<DropdownProps> = ({
   ));
 
   return (
-    <div className='w-48 relative' ref={divEl}>
+    <div className="w-48 relative" ref={divEl}>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-      <Panel
-        className='flex justify-between items-center cursor-pointer'
-        onClick={handleClick}>
+      <Panel className="flex justify-between items-center cursor-pointer" onClick={handleClick}>
         {value?.label || selectLabel}
-        <GoChevronDown className='text-lg' />
+        <GoChevronDown className="text-lg" />
       </Panel>
-      {isOpen && <Panel className='absolute top-full'>{renderedOptions}</Panel>}
+      {isOpen && <Panel className="absolute top-full">{renderedOptions}</Panel>}
     </div>
   );
 };

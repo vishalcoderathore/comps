@@ -5,17 +5,13 @@ export interface NavigationContextType {
   navigate: (to: string) => void;
 }
 
-const NavigationContext = createContext<NavigationContextType | undefined>(
-  undefined,
-);
+const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
 
 interface NavigationProviderProps {
   children: ReactNode;
 }
 
-const NavigationProvider: React.FC<NavigationProviderProps> = ({
-  children,
-}) => {
+const NavigationProvider: React.FC<NavigationProviderProps> = ({ children }) => {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
@@ -33,11 +29,7 @@ const NavigationProvider: React.FC<NavigationProviderProps> = ({
     setCurrentPath(to);
   };
 
-  return (
-    <NavigationContext.Provider value={{ currentPath, navigate }}>
-      {children}
-    </NavigationContext.Provider>
-  );
+  return <NavigationContext.Provider value={{ currentPath, navigate }}>{children}</NavigationContext.Provider>;
 };
 export { NavigationProvider };
 export default NavigationContext;

@@ -9,7 +9,7 @@ function ButtonPage(): ReactElement {
 
   return (
     <div>
-      <Button primary onClick={handleClick} className='mb-5' disabled>
+      <Button primary onClick={handleClick} className="mb-5" disabled>
         <GoBell />
         Button
       </Button>

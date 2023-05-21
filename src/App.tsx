@@ -28,22 +28,22 @@ function App(): ReactElement {
   ];
 
   return (
-    <div className='container mx-auto grid grid-cols-6 gap-4 mt-4'>
+    <div className="container mx-auto grid grid-cols-6 gap-4 mt-4">
       <Sidebar links={links} />
-      <div className='col-span-5'>
-        <Route path='/'>
+      <div className="col-span-5">
+        <Route path="/">
           <DropdownPage />
         </Route>
-        <Route path='/dropdown'>
+        <Route path="/dropdown">
           <DropdownPage />
         </Route>
-        <Route path='/accordion'>
+        <Route path="/accordion">
           <AccordionPage />
         </Route>
-        <Route path='/button'>
+        <Route path="/button">
           <ButtonPage />
         </Route>
-        <Route path='/modal'>
+        <Route path="/modal">
           <ModalPage />
         </Route>
       </div>

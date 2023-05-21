@@ -9,12 +9,7 @@ interface LinkProps {
   to: string;
 }
 
-const Link: React.FC<LinkProps> = ({
-  activeClassName,
-  children,
-  className,
-  to,
-}) => {
+const Link: React.FC<LinkProps> = ({ activeClassName, children, className, to }) => {
   const context = useNavigationContext();
   const noop = (): void => {
     console.log('[EMPTY CONTEXT]');
@@ -23,11 +18,7 @@ const Link: React.FC<LinkProps> = ({
   const currentPath = context?.currentPath || '';
 
   // Custom Styling
-  const classes = classNames(
-    'text-blue-500',
-    className,
-    currentPath === to && activeClassName,
-  );
+  const classes = classNames('text-blue-500', className, currentPath === to && activeClassName);
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>): void => {
     // Support pressing Ctrl key and clicking navigation items to open up in a new tab
