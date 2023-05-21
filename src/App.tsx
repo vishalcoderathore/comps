@@ -4,6 +4,7 @@ import DropdownPage from './pages/DropdownPage';
 import Route from './components/base/Route';
 import ButtonPage from './pages/ButtonPage';
 import ModalPage from './pages/ModalPage';
+import TablePage from './pages/TablePage';
 import { ReactElement } from 'react';
 import './App.css';
 
@@ -25,6 +26,10 @@ function App(): ReactElement {
       label: 'Modal',
       path: '/modal',
     },
+    {
+      label: 'Table',
+      path: '/table',
+    },
   ];
 
   return (
@@ -45,6 +50,9 @@ function App(): ReactElement {
         </Route>
         <Route path="/modal">
           <ModalPage />
+        </Route>
+        <Route path="/table">
+          <TablePage />
         </Route>
       </div>
     </div>
