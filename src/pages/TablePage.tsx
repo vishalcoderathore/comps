@@ -1,5 +1,5 @@
-import Table from '../components/base/Table';
-import { ReactNode } from 'react';
+import SortableTable from '../components/base/SortableTable';
+import { ReactElement, ReactNode } from 'react';
 
 interface Fruit {
   name: string;
@@ -7,7 +7,7 @@ interface Fruit {
   score: number;
 }
 
-const TablePage = (): ReactNode => {
+const TablePage = (): ReactElement => {
   // Map of colors to Tailwind color classes
   const colorMap: { [key: string]: string } = {
     orange: 'bg-orange-500',
@@ -49,6 +49,7 @@ const TablePage = (): ReactNode => {
     {
       label: 'Name',
       render: (fruit: Fruit): ReactNode => fruit.name,
+      sortValue: (fruit: Fruit): ReactNode => fruit.name,
     },
     {
       label: 'Color',
@@ -59,12 +60,13 @@ const TablePage = (): ReactNode => {
     {
       label: 'Score',
       render: (fruit: Fruit): ReactNode => fruit.score,
+      sortValue: (fruit: Fruit): ReactNode => fruit.score,
     },
   ];
 
   return (
     <div>
-      <Table data={data} config={config} keySelector={(item): string | number => item.name} />
+      <SortableTable data={data} config={config} keySelector={(item): string | number => item.name} />
     </div>
   );
 };
