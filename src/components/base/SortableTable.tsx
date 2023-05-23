@@ -1,33 +1,12 @@
 import { GoArrowSmallDown, GoArrowSmallUp } from 'react-icons/go';
-import { ReactElement, useState } from 'react';
 import Table, { TableProps } from './Table';
+import useSort from '../../hooks/use-sort';
+import { ReactElement } from 'react';
 
 // Use same TableProps for SortableTable
 const SortableTable = <T,>(props: TableProps<T>): ReactElement => {
-  // State variables for sortOrder and sortBy
-  const [sortOrder, setSortOrder] = useState<string | null>(null);
-  const [sortBy, setSortBy] = useState<string | null>(null);
-
-  // Function to handle clicking on a table column label
-  const handleClick = (label: string): void => {
-    if (sortBy && label !== sortBy) {
-      setSortOrder('asc');
-      setSortBy(label);
-      return;
-    }
-    if (sortOrder === null) {
-      setSortOrder('asc');
-      setSortBy(label);
-    } else if (sortOrder === 'asc') {
-      setSortOrder('desc');
-      setSortBy(label);
-    } else if (sortOrder === 'desc') {
-      setSortOrder(null);
-      setSortBy(null);
-    }
-  };
-
   const { config, data } = props;
+  const { sortOrder, sortedData, sortBy, setSortColumn } = useSort(config, data);
 
   // Create a new configuration for table columns with sorting capability
   const updatedConfig = config.map(column => {
@@ -39,7 +18,7 @@ const SortableTable = <T,>(props: TableProps<T>): ReactElement => {
     return {
       ...column,
       header: (): ReactElement => (
-        <th className="cursor-pointer hover:bg-gray-100" onClick={(): void => handleClick(column.label)}>
+        <th className="cursor-pointer hover:bg-gray-100" onClick={(): void => setSortColumn(column.label)}>
           <div className="flex items-center">
             {getIcons(column.label, sortBy, sortOrder)}
             {column.label}
@@ -48,37 +27,6 @@ const SortableTable = <T,>(props: TableProps<T>): ReactElement => {
       ),
     };
   });
-
-  // Initialize sortedData with the original data
-  let sortedData = data;
-
-  // If a column to sort by and a sort order are defined
-  if (sortOrder && sortBy) {
-    // Get the configuration of the column to sort by
-    const columnConfig = config.find(column => column.label === sortBy);
-
-    // If column configuration and a sortValue function exist
-    if (columnConfig && typeof columnConfig.sortValue === 'function') {
-      // Get the sortValue function
-      const sortValue = columnConfig.sortValue;
-
-      // Sort the data based on the sortValue function and sort order
-      sortedData = [...data].sort((a, b) => {
-        const [valueA, valueB] = [sortValue(a), sortValue(b)];
-        const reverseOrder = sortOrder === 'asc' ? 1 : -1;
-
-        // Compare the sorted values differently depending on their type
-        if (typeof valueA === 'number' && typeof valueB === 'number') {
-          return (valueA - valueB) * reverseOrder;
-        } else if (typeof valueA === 'string' && typeof valueB === 'string') {
-          return valueA.localeCompare(valueB) * reverseOrder;
-        }
-
-        // Default case: return 0 (no change in order)
-        return 0;
-      });
-    }
-  }
 
   // Render the table with sorted data and updated configuration
   return (

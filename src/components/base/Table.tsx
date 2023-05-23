@@ -1,6 +1,6 @@
 import { Fragment, ReactElement, ReactNode } from 'react';
 
-interface RenderConfig<T> {
+export interface RenderConfig<T> {
   label: string;
   render: (item: T) => ReactNode;
   header?: () => ReactElement;
